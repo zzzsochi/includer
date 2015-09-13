@@ -77,3 +77,9 @@ class _IncluderWrapper(IncluderMixin):
             self.__dict__[attr] = value
         else:
             setattr(self._include_object, attr, value)
+
+    def __getitem__(self, key):
+        return self._include_object[key]
+
+    def __setitem__(self, key, value):
+        self._include_object[key] = value
