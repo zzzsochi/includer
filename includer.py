@@ -40,6 +40,9 @@ class IncluderMixin:
     _include_default = 'includeme'
     _include_module = None
 
+    def _includer_get_wrapper(self, include_module):
+        return _IncluderWrapper(self, include_module)
+
     def include(self, _name_or_func, *args, **kwargs):
         if callable(_name_or_func):
             resolved = _name_or_func
@@ -50,7 +53,7 @@ class IncluderMixin:
                 default=self._include_default,
             )
 
-        wrap = _IncluderWrapper(self, resolved.__module__)
+        wrap = self._includer_get_wrapper(resolved.__module__)
 
         resolved(*((wrap,) + args), **kwargs)
 
