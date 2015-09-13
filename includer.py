@@ -1,4 +1,4 @@
-from types import ModuleType
+from types import ModuleType, MethodType
 
 from zope.dottedname.resolve import resolve
 
@@ -66,7 +66,11 @@ class _IncluderWrapper(IncluderMixin):
         self._include_module = module
 
     def __getattr__(self, attr):
-        return getattr(self._include_object, attr)
+        obj = getattr(self._include_object, attr)
+        if isinstance(obj, MethodType) and hasattr(obj, '__func__'):
+            return MethodType(obj.__func__, self)
+        else:
+            return obj
 
     def __setattr__(self, attr, value):
         if attr.startswith('_include_'):
