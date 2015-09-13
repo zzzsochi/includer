@@ -24,7 +24,7 @@ def resolve_str(name_or_func, module, default):
 
 def include(_name_or_func, *args,
             _module=None, _default='includeme', **kwargs):
-    """ Resolve and functions
+    """ Resolve and call functions
     """
     if callable(_name_or_func):
         resolved = _name_or_func
