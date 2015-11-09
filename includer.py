@@ -83,3 +83,6 @@ class _IncluderWrapper(IncluderMixin):
 
     def __setitem__(self, key, value):
         self._include_object[key] = value
+
+    def __contains__(self, key):
+        return key in self._include_object

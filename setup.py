@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='includer',
-      version='1.0.1',
+      version='1.0.2',
       description='Include and run callables',
       classifiers=[
           "License :: OSI Approved :: BSD License",
